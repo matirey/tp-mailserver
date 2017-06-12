@@ -20,6 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import tpmaven.tp.prog2.converter.PersonaConverterInterface;
+import tpmaven.tp.prog2.model.Persona;
+import tpmaven.tp.prog2.request.PersonaRequest;
+import tpmaven.tp.prog2.response.PersonaWrapper;
+import tpmaven.tp.prog2.service.PersonaService;
 
 /**
  *

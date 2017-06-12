@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import tpmaven.tp.prog2.model.Usuario;
 import tpmaven.tp.prog2.response.LoginResponseWrapper;
+import tpmaven.tp.prog2.service.UsuarioService;
+import tpmaven.tp.prog2.util.SessionData;
 
 /**
  *
