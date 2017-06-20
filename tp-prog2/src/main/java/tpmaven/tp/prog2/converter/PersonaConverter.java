@@ -6,30 +6,37 @@
 package tpmaven.tp.prog2.converter;
 
 import java.text.SimpleDateFormat;
+import org.springframework.stereotype.Component;
 import tpmaven.tp.prog2.model.Persona;
+import tpmaven.tp.prog2.model.Usuario;
 import tpmaven.tp.prog2.response.PersonaWrapper;
 
 /**
  *
  * @author Matias
  */
-public class PersonaConverter implements PersonaConverterInterface {
+@Component
+public class UsuarioConverter {
 
-    public String dateFormat;
-
-    public PersonaConverter(String dateFormat) {
-        this.dateFormat = dateFormat;
+    public UsuarioConverter() {
     }
 
-     public PersonaWrapper convert(Persona persona) {
-        PersonaWrapper p = new PersonaWrapper();
-        p.setApellido(persona.getApellido());
-        p.setNombre(persona.getNombre());
-        p.setEdad(persona.getEdad());
-        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
-        p.setFechaNacimiento(sdf.format(persona.getFechaNacimiento()));
-        return p;
-    }
+    public UsuarioWrapper convert(Usuario user) {
+        UsuarioWrapper u = new UsuarioWrapper();
 
+        u.setId(user.getId());
+        u.setFirstName(user.getFirstName());
+        u.setLastName(user.getLastName());
+        u.setAddress(user.getAddress());
+        u.setPhone(user.getPhone());
+        u.setCity(user.getCity());
+        u.setState(user.getState());
+        u.setCountry(user.getCountry());
+        u.setUsername(user.getUsername());
+        u.setEmail(user.getEmail());
+
+        return u;
+    }
 }
+
 

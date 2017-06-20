@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tpmaven.tp.prog2.model.Usuario;
 import tpmaven.tp.prog2.persist.UsuarioDao;
+import tpmaven.tp.prog2.request.UsuarioRequest;
 
 /**
  *
@@ -17,15 +18,40 @@ import tpmaven.tp.prog2.persist.UsuarioDao;
 @Service
 public class UsuarioService {
 
-    UsuarioDao usuarioDao;
-
     @Autowired
-    public UsuarioService(UsuarioDao dao) {
-        this.usuarioDao = dao;
+    private UsuarioDao usuariodao;
+
+    //private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+
+    public Usuario login(String username, String password) {
+
+        Usuario u = usuariodao.traerpornombre(username);
+
+        if (u == null) {
+            return null;
+        }
+
+        if (password.equals(u.getPassword())) {
+            return u;
+        }
+
+        return null;
     }
 
-    public Usuario login(String nombreUsuario, String password) {
-        return usuarioDao.getUsuario(nombreUsuario,password);
+    public Usuario newUser(UsuarioRequest usuariorequest) {
+        Usuario usuario = new Usuario();
+
+        usuario.setNombre(usuariorequest.getNombre());
+        usuario.setApellido(usuariorequest.getApellido());
+        usuario.setDireccion(usuariorequest.getDireccion());
+        usuario.setTelefono(usuariorequest.getTelefono());
+        usuario.setCiudad(usuariorequest.getCiudad());
+        usuario.setProvincia(usuariorequest.getProvincia());
+        usuario.setPais(usuariorequest.getPais());
+        usuario.setUsername(usuariorequest.getUsername());
+        usuario.setEmail(usuariorequest.getEmail());
+        usuario.setPassword(usuariorequest.getPassword());
+
+        return usuariodao.save(usuario);
     }
 }
-
