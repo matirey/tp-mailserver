@@ -7,52 +7,21 @@
 package tpmaven.tp.prog2.persist;
 
 import java.util.List;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 import tpmaven.tp.prog2.model.Usuario;
 
 /**
  *
  * @author Matias
  */
-@Repository
-public class UsuarioDao extends  AbstractDao<Usuario> {
+public interface UsuarioDao extends CrudRepository<Usuario, Long> {
+    
+    Usuario findByUsername(String username);
 
+    List<Usuario> findByApellido(String apellido);
 
-  @Autowired
-  public UsuarioDao(SessionFactory sessionFactory) {
-    super(sessionFactory);
-  }
+    int countByUsername(String username);
 
-  @Override
-  List<Usuario> getAll() {
-    return null;
-  }
-
-  @Override
-  Usuario getById(int id) {
-    return null;
-  }
-
-  @Override
-  void save(Usuario value) {
-
-  }
-
-
-  public Usuario getUsuario(String nombreUsuario, String password) {
-
-    Session session = this.sessionFactory.openSession();
-    List<Usuario> list = session.createQuery("FROM Usuario where nombreUsuario = :u and password = :p").setParameter("u",nombreUsuario).setParameter("p",password).list();
-    session.close();
-    if (list.size() == 1) {
-      return list.get(0);
-    } else {
-      return null;
-    }
-  }
-
+    int countByEmail(String email);
 }
 

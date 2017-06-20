@@ -21,11 +21,9 @@ public class UsuarioService {
     @Autowired
     private UsuarioDao usuariodao;
 
-    //private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
-
     public Usuario login(String username, String password) {
 
-        Usuario u = usuariodao.traerpornombre(username);
+        Usuario u = usuariodao.findByUsername(username);
 
         if (u == null) {
             return null;
@@ -53,5 +51,5 @@ public class UsuarioService {
         usuario.setPassword(usuariorequest.getPassword());
 
         return usuariodao.save(usuario);
-    }
+    }    
 }
