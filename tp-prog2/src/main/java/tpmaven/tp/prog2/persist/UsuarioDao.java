@@ -17,6 +17,8 @@ import tpmaven.tp.prog2.model.Usuario;
 public interface UsuarioDao extends CrudRepository<Usuario, Long> {
     
     Usuario findByUsername(String username);
+    
+    Usuario findByNombre(String nombre);
 
     List<Usuario> findByApellido(String apellido);
 

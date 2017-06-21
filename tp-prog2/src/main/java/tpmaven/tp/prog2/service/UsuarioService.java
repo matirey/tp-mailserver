@@ -38,7 +38,6 @@ public class UsuarioService {
 
     public Usuario newUser(UsuarioRequest usuariorequest) {
         Usuario usuario = new Usuario();
-
         usuario.setNombre(usuariorequest.getNombre());
         usuario.setApellido(usuariorequest.getApellido());
         usuario.setDireccion(usuariorequest.getDireccion());
